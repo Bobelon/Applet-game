@@ -11,7 +11,7 @@ public class Start extends Applet {
 	Timer timer = new Timer();
 	Image bgImage;
 	Graphics bgGrap;
-	Image testowy1;
+	Image player, tex1, texK1, texD1, texT1;
 	
 	public void init() {
 		applet = this;
@@ -22,7 +22,11 @@ public class Start extends Applet {
 		
 		zad.tworzenieMapy();
 		
-		testowy1 = getImage(getDocumentBase(), "img/cl.jpg");
+		player = getImage(getDocumentBase(), "img/player.png");
+		tex1 = getImage(getDocumentBase(), "img/tex1.png");
+		texK1 = getImage(getDocumentBase(), "img/texK1.png");
+		texD1 = getImage(getDocumentBase(), "img/texD1.png");
+		texT1 = getImage(getDocumentBase(), "img/texT1.png");
 	}
 	
 	public void update(Graphics g) {
@@ -33,6 +37,34 @@ public class Start extends Applet {
 	
 	public void paint(Graphics g){
 		g.drawString("Filip", zad.pozycjaNapisuX, zad.pozycjaNapisuY);
-		g.drawImage(testowy1, 50, 200, 180, 200, applet);
+		rysujMapeGry(g);
+	}
+	
+	public void rysujMapeGry(Graphics g) {
+		for(int i = 0; i < zad.mapa1.length; i++) {
+			for(int j = 0; j < zad.mapa1[0].length; j++) {
+				switch(zad.mapa1[i][j]) {
+					case 0:
+						g.drawImage(texT1, 50 + 20 * j, 50 + 20 * i, this);
+					break;
+					case 1:
+						g.drawImage(texT1, 50 + 20 * j, 50 + 20 * i, this);
+						g.drawImage(texK1, 50 + 20 * j, 50 + 20 * i, this);
+					break;
+					case 2:
+						g.drawImage(texT1, 50 + 20 * j, 50 + 20 * i, this);
+						g.drawImage(tex1, 50 + 20 * j, 50 + 20 * i, this);
+					break;
+					case 3:
+						g.drawImage(tex1, 50 + 20 * j, 50 + 20 * i, this);
+						g.drawImage(texD1, 50 + 20 * j, 50 + 20 * i, this);
+					break;
+					case 4:
+						g.drawImage(texT1, 50 + 20 * j, 50 + 20 * i, this);
+						g.drawImage(player, 50 + 20 * j, 50 + 20 * i, this);
+					break;
+				}
+			}
+		}
 	}
 }
