@@ -8,25 +8,15 @@ public class Obliczenia extends TimerTask{
 	int przebytaDrogaNapisu = 0;
 	int mapa1[][] = new int [20][20];
 	int pPostaciY = 2, pPostaciX = 2;
+	int zyciePostaci = 100;
+	String komunikatWKonsoli, komunikatSmierci;
 	
 	public void run() {
-		switch(kierunek){
-			case 1:
-				pozycjaNapisuY++;
-				przebytaDrogaNapisu++;
-				if(przebytaDrogaNapisu == 200) {
-					przebytaDrogaNapisu = 0;
-					kierunek = 2;
-				}
-			break;
-			case 2:
-				pozycjaNapisuY--;
-				przebytaDrogaNapisu++;
-				if(przebytaDrogaNapisu == 200) {
-					przebytaDrogaNapisu = 0;
-					kierunek = 1;
-				}
-			break;
+		if(zyciePostaci > 100) {
+			zyciePostaci = 100;
+		}
+		else if (zyciePostaci <= 0) {
+			smiercGracza(true, 0, false, 90, 10);
 		}
 		Start.applet.repaint();
 	}
@@ -93,5 +83,22 @@ public class Obliczenia extends TimerTask{
 				}
 			break;
 		}
+	}
+	
+	public void smiercGracza(boolean resetMapy, int mapaOdrodzenia, boolean resetEQ,
+			int iloscZyciaPoOdrodzeniu, int iloscMinusowychPunktow) {
+		if(resetMapy == true) {
+			tworzenieMapy();
+			pPostaciX = 2;
+			pPostaciY = 2;
+		}
+		else{}
+		//if(resteEQ == true) {}else()
+		//switch(mapaOdrodzenia){}
+		
+		//punkty = iloscMinusowychPunktow;
+		
+		komunikatWKonsoli = komunikatSmierci;		
+		zyciePostaci = iloscZyciaPoOdrodzeniu;
 	}
 }

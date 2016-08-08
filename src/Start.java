@@ -1,4 +1,5 @@
 import java.applet.Applet;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -19,6 +20,7 @@ public class Start extends Applet implements KeyListener {
 		applet = this;
 		applet.setSize(wielkoscX, wielkoscY);
 		applet.addKeyListener(this);
+		applet.setBackground(Color.BLACK);
 		
 		timer.scheduleAtFixedRate(zad, 10, 10);
 		bgImage = createImage(wielkoscX, wielkoscY);
@@ -39,33 +41,33 @@ public class Start extends Applet implements KeyListener {
 		g.drawImage(bgImage, 0, 0, applet);
 	}
 	
-	public void paint(Graphics g){
-		g.drawString("Filip", zad.pozycjaNapisuX, zad.pozycjaNapisuY);
+	public void paint(Graphics g){		
+		g.drawString("!Console: " + zad.komunikatWKonsoli, 10, 500);		
+		g.fillRect(410, 25, zad.zyciePostaci, 10);
+		g.setColor(Color.RED);
+		g.drawString("¯ycie: " + zad.zyciePostaci, 410, 15);
+		g.drawRect(410, 25, 100, 10);
+		
 		rysujMapeGry(g);
 	}
 	
 	public void rysujMapeGry(Graphics g) {
 		for(int i = 0; i < zad.mapa1.length; i++) {
 			for(int j = 0; j < zad.mapa1[0].length; j++) {
+				g.drawImage(texT1, 20 * j, 20 * i, this);				
 				switch(zad.mapa1[i][j]) {
-					case 0:
-						g.drawImage(texT1, 50 + 20 * j, 50 + 20 * i, this);
-					break;
-					case 1:
-						g.drawImage(texT1, 50 + 20 * j, 50 + 20 * i, this);
-						g.drawImage(texK1, 50 + 20 * j, 50 + 20 * i, this);
+					case 1:						
+						g.drawImage(texK1, 20 * j, 20 * i, this);
 					break;
 					case 2:
-						g.drawImage(texT1, 50 + 20 * j, 50 + 20 * i, this);
-						g.drawImage(tex1, 50 + 20 * j, 50 + 20 * i, this);
+						g.drawImage(tex1, 20 * j, 20 * i, this);
 					break;
 					case 3:
-						g.drawImage(tex1, 50 + 20 * j, 50 + 20 * i, this);
-						g.drawImage(texD1, 50 + 20 * j, 50 + 20 * i, this);
+						g.drawImage(tex1, 20 * j, 20 * i, this);
+						g.drawImage(texD1, 20 * j, 20 * i, this);
 					break;
 					case 4:
-						g.drawImage(texT1, 50 + 20 * j, 50 + 20 * i, this);
-						g.drawImage(player, 50 + 20 * j, 50 + 20 * i, this);
+						g.drawImage(player, 20 * j, 20 * i, this);
 					break;
 				}
 			}
