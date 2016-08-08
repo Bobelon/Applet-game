@@ -11,6 +11,7 @@ public class Start extends Applet {
 	Timer timer = new Timer();
 	Image bgImage;
 	Graphics bgGrap;
+	Image testowy1;
 	
 	public void init() {
 		applet = this;
@@ -18,6 +19,7 @@ public class Start extends Applet {
 		timer.scheduleAtFixedRate(zad, 10, 10);
 		bgImage = createImage(wielkoscX, wielkoscY);
 		bgGrap = bgImage.getGraphics();
+		testowy1 = getImage(getDocumentBase(), "img/cl.jpg");
 	}
 	
 	public void update(Graphics g) {
@@ -28,5 +30,6 @@ public class Start extends Applet {
 	
 	public void paint(Graphics g){
 		g.drawString("Filip", zad.pozycjaNapisuX, zad.pozycjaNapisuY);
+		g.drawImage(testowy1, 50, 200, 180, 200, applet);
 	}
 }
