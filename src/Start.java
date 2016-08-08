@@ -1,9 +1,11 @@
 import java.applet.Applet;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Timer;
 
-public class Start extends Applet {
+public class Start extends Applet implements KeyListener {
 
 	static Applet applet;
 	int wielkoscX = 800, wielkoscY = 600;
@@ -16,6 +18,8 @@ public class Start extends Applet {
 	public void init() {
 		applet = this;
 		applet.setSize(wielkoscX, wielkoscY);
+		applet.addKeyListener(this);
+		
 		timer.scheduleAtFixedRate(zad, 10, 10);
 		bgImage = createImage(wielkoscX, wielkoscY);
 		bgGrap = bgImage.getGraphics();
@@ -66,5 +70,38 @@ public class Start extends Applet {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		switch(arg0.getKeyCode()) {
+			case 87:
+				zad.poruszaniePostacia('w');
+			break;
+			case 83:
+				zad.poruszaniePostacia('s');
+			break;
+			case 65:
+				zad.poruszaniePostacia('a');
+			break;
+			case 68:
+				zad.poruszaniePostacia('d');
+			break;
+			default:
+				System.out.println(arg0.getKeyCode());
+			break;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

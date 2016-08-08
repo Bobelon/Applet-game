@@ -7,6 +7,7 @@ public class Obliczenia extends TimerTask{
 	int kierunek = 1;
 	int przebytaDrogaNapisu = 0;
 	int mapa1[][] = new int [20][20];
+	int pPostaciY = 2, pPostaciX = 2;
 	
 	public void run() {
 		switch(kierunek){
@@ -58,6 +59,39 @@ public class Obliczenia extends TimerTask{
 			for(int j = 0; j < mapa1[0].length; j++) {
 				mapa1[i][j] = mapa12[i][j];
 			}
+		}
+	}
+	
+	public void poruszaniePostacia(char klawisz) {
+		switch(klawisz) {
+			case 'w':
+				if(mapa1[pPostaciY - 1][pPostaciX] == 0) {
+					mapa1[pPostaciY - 1][pPostaciX] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciY--;
+				}
+			break;
+			case 's':
+				if(mapa1[pPostaciY + 1][pPostaciX] == 0) {
+					mapa1[pPostaciY + 1][pPostaciX] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciY++;
+				}
+			break;
+			case 'a':
+				if(mapa1[pPostaciY][pPostaciX - 1] == 0) {
+					mapa1[pPostaciY][pPostaciX - 1] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciX--;
+				}
+			break;
+			case 'd':
+				if(mapa1[pPostaciY][pPostaciX + 1] == 0) {
+					mapa1[pPostaciY][pPostaciX + 1] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciX++;
+				}
+			break;
 		}
 	}
 }
