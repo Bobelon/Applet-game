@@ -19,6 +19,9 @@ public class Start extends Applet {
 		timer.scheduleAtFixedRate(zad, 10, 10);
 		bgImage = createImage(wielkoscX, wielkoscY);
 		bgGrap = bgImage.getGraphics();
+		
+		zad.tworzenieMapy();
+		
 		testowy1 = getImage(getDocumentBase(), "img/cl.jpg");
 	}
 	
