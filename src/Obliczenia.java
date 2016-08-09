@@ -10,6 +10,7 @@ public class Obliczenia extends TimerTask{
 	int pPostaciY = 2, pPostaciX = 2;
 	int zyciePostaci = 100;
 	String komunikatWKonsoli, komunikatSmierci;
+	int punkty = 0;
 	
 	public void run() {
 		if(zyciePostaci > 100) {
@@ -28,8 +29,8 @@ public class Obliczenia extends TimerTask{
 	
 		int mapa12[][] = {
 				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-				{1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1},
-				{1,0,4,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1},
+				{1,0,0,0,1,1,1,1,1,1,1,1,7,0,0,0,0,0,0,1},
+				{1,0,4,0,1,0,0,0,1,1,1,1,7,0,0,0,0,0,0,1},
 				{1,0,0,0,1,0,0,0,0,1,1,2,2,2,2,2,2,2,0,1},
 				{1,0,0,0,1,0,0,0,0,0,1,2,2,2,2,2,2,2,0,1},
 				{1,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,0,1},
@@ -73,6 +74,13 @@ public class Obliczenia extends TimerTask{
 					mapa1[pPostaciY][pPostaciX] = 0;
 					pPostaciY--;
 				}
+				else if(mapa1[pPostaciY - 1][pPostaciX] == 7) {
+					punkty += 10;
+					mapa1[pPostaciY - 1][pPostaciX] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciY--;
+					komunikatWKonsoli = "Punkty + 10";
+				}
 			break;
 			case 's':
 				if(mapa1[pPostaciY + 1][pPostaciX] == 0) {
@@ -88,6 +96,13 @@ public class Obliczenia extends TimerTask{
 					mapa1[pPostaciY + 1][pPostaciX] = 4;
 					mapa1[pPostaciY][pPostaciX] = 0;
 					pPostaciY++;
+				}
+				else if(mapa1[pPostaciY + 1][pPostaciX] == 7) {
+					punkty += 10;
+					mapa1[pPostaciY + 1][pPostaciX] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciY++;
+					komunikatWKonsoli = "Punkty + 10";
 				}
 			break;
 			case 'a':
@@ -105,6 +120,13 @@ public class Obliczenia extends TimerTask{
 					mapa1[pPostaciY][pPostaciX] = 0;
 					pPostaciX--;
 				}
+				else if(mapa1[pPostaciY][pPostaciX - 1] == 7) {
+					punkty += 10;
+					mapa1[pPostaciY][pPostaciX - 1] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciX--;
+					komunikatWKonsoli = "Punkty + 10";
+				}
 			break;
 			case 'd':
 				if(mapa1[pPostaciY][pPostaciX + 1] == 0) {
@@ -121,6 +143,13 @@ public class Obliczenia extends TimerTask{
 					mapa1[pPostaciY][pPostaciX] = 0;
 					pPostaciX++;
 				}
+				else if(mapa1[pPostaciY][pPostaciX + 1] == 7) {
+					punkty += 10;
+					mapa1[pPostaciY][pPostaciX + 1] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciX++;
+					komunikatWKonsoli = "Punkty + 10";
+				}
 			break;
 		}
 	}
@@ -134,7 +163,11 @@ public class Obliczenia extends TimerTask{
 		//if(resteEQ == true) {}else()
 		//switch(mapaOdrodzenia){}
 		
-		//punkty = iloscMinusowychPunktow;
+		punkty -= iloscMinusowychPunktow;
+		
+		if(punkty < 0) {
+			punkty = 0;
+		}
 		
 		komunikatWKonsoli = komunikatSmierci;		
 		zyciePostaci = iloscZyciaPoOdrodzeniu;

@@ -14,7 +14,7 @@ public class Start extends Applet implements KeyListener {
 	Timer timer = new Timer();
 	Image bgImage;
 	Graphics bgGrap;
-	Image player, tex1, texK1, texD1, texT1, pigulka, trap;
+	Image player, tex1, texK1, texD1, texT1, pigulka, trap, coin;
 	
 	public void init() {
 		applet = this;
@@ -35,6 +35,7 @@ public class Start extends Applet implements KeyListener {
 		texT1 = getImage(getDocumentBase(), "img/texT1.png");
 		pigulka = getImage(getDocumentBase(), "img/pigulka.png");
 		trap = getImage(getDocumentBase(), "img/trap.png");
+		coin = getImage(getDocumentBase(), "img/coin.png");
 	}
 	
 	public void update(Graphics g) {
@@ -43,12 +44,17 @@ public class Start extends Applet implements KeyListener {
 		g.drawImage(bgImage, 0, 0, applet);
 	}
 	
-	public void paint(Graphics g){		
-		g.drawString("!Console: " + zad.komunikatWKonsoli, 10, 500);		
-		g.fillRect(410, 25, zad.zyciePostaci, 10);
+	public void paint(Graphics g){	
+		g.setColor(Color.WHITE);
+		g.drawString("!Console: " + zad.komunikatWKonsoli, 10, 500);
+		
 		g.setColor(Color.RED);
 		g.drawString("¯ycie: " + zad.zyciePostaci, 410, 15);
 		g.drawRect(410, 25, 100, 10);
+		g.fillRect(410, 25, zad.zyciePostaci, 10);
+		
+		g.setColor(Color.YELLOW);
+		g.drawString("Punkty: " + zad.punkty, 410, 50);
 		
 		rysujMapeGry(g);
 	}
@@ -76,6 +82,9 @@ public class Start extends Applet implements KeyListener {
 					break;
 					case 6:
 						g.drawImage(pigulka, 20 * j, 20 * i, this);
+					break; 
+					case 7:
+						g.drawImage(coin, 20 * j, 20 * i, this);
 					break; 
 				}
 			}
