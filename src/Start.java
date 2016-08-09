@@ -14,7 +14,7 @@ public class Start extends Applet implements KeyListener {
 	Timer timer = new Timer();
 	Image bgImage;
 	Graphics bgGrap;
-	Image player, tex1, texK1, texD1, texT1;
+	Image player, tex1, texK1, texD1, texT1, pigulka, trap;
 	
 	public void init() {
 		applet = this;
@@ -33,6 +33,8 @@ public class Start extends Applet implements KeyListener {
 		texK1 = getImage(getDocumentBase(), "img/texK1.png");
 		texD1 = getImage(getDocumentBase(), "img/texD1.png");
 		texT1 = getImage(getDocumentBase(), "img/texT1.png");
+		pigulka = getImage(getDocumentBase(), "img/pigulka.png");
+		trap = getImage(getDocumentBase(), "img/trap.png");
 	}
 	
 	public void update(Graphics g) {
@@ -69,6 +71,12 @@ public class Start extends Applet implements KeyListener {
 					case 4:
 						g.drawImage(player, 20 * j, 20 * i, this);
 					break;
+					case 5:
+						g.drawImage(trap, 20 * j, 20 * i, this);
+					break;
+					case 6:
+						g.drawImage(pigulka, 20 * j, 20 * i, this);
+					break; 
 				}
 			}
 		}
