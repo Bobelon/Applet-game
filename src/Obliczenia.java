@@ -16,12 +16,16 @@ public class Obliczenia extends TimerTask{
 			zyciePostaci = 100;
 		}
 		else if (zyciePostaci <= 0) {
-			smiercGracza(true, 0, false, 90, 10);
+			smiercGracza(true, 0, false, 100, 10);
 		}
 		Start.applet.repaint();
 	}
 	
 	public void tworzenieMapy() {
+		
+	pPostaciY = 2;
+	pPostaciX = 2;
+	
 		int mapa12[][] = {
 				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 				{1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1},
@@ -60,9 +64,27 @@ public class Obliczenia extends TimerTask{
 					mapa1[pPostaciY][pPostaciX] = 0;
 					pPostaciY--;
 				}
+				else if(mapa1[pPostaciY - 1][pPostaciX] == 5) {
+					zyciePostaci -= 10;
+				}
+				else if(mapa1[pPostaciY - 1][pPostaciX] == 6) {
+					zyciePostaci += 10;
+					mapa1[pPostaciY - 1][pPostaciX] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciY--;
+				}
 			break;
 			case 's':
 				if(mapa1[pPostaciY + 1][pPostaciX] == 0) {
+					mapa1[pPostaciY + 1][pPostaciX] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciY++;
+				}
+				else if(mapa1[pPostaciY + 1][pPostaciX] == 5) {
+					zyciePostaci -= 10;
+				}
+				else if(mapa1[pPostaciY + 1][pPostaciX] == 6) {
+					zyciePostaci += 10;
 					mapa1[pPostaciY + 1][pPostaciX] = 4;
 					mapa1[pPostaciY][pPostaciX] = 0;
 					pPostaciY++;
@@ -74,9 +96,27 @@ public class Obliczenia extends TimerTask{
 					mapa1[pPostaciY][pPostaciX] = 0;
 					pPostaciX--;
 				}
+				else if(mapa1[pPostaciY][pPostaciX - 1] == 5) {
+					zyciePostaci -= 10;
+				}
+				else if(mapa1[pPostaciY][pPostaciX - 1] == 6) {
+					zyciePostaci += 10;
+					mapa1[pPostaciY][pPostaciX - 1] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciX--;
+				}
 			break;
 			case 'd':
 				if(mapa1[pPostaciY][pPostaciX + 1] == 0) {
+					mapa1[pPostaciY][pPostaciX + 1] = 4;
+					mapa1[pPostaciY][pPostaciX] = 0;
+					pPostaciX++;
+				}
+				else if(mapa1[pPostaciY][pPostaciX + 1] == 5) {
+					zyciePostaci -= 10;
+				}
+				else if(mapa1[pPostaciY][pPostaciX + 1] == 6) {
+					zyciePostaci += 10;
 					mapa1[pPostaciY][pPostaciX + 1] = 4;
 					mapa1[pPostaciY][pPostaciX] = 0;
 					pPostaciX++;
@@ -89,8 +129,6 @@ public class Obliczenia extends TimerTask{
 			int iloscZyciaPoOdrodzeniu, int iloscMinusowychPunktow) {
 		if(resetMapy == true) {
 			tworzenieMapy();
-			pPostaciX = 2;
-			pPostaciY = 2;
 		}
 		else{}
 		//if(resteEQ == true) {}else()
